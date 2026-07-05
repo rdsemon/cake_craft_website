@@ -1,6 +1,6 @@
 import axios from "axios";
 import api from "./api";
-import type { CakesResponse, Cake } from "./types";
+import type { CakesResponse, Cake } from "./types/cake.types";
 
 export const getAllCakes = async (): Promise<CakesResponse> => {
   const response = await api.get<CakesResponse>("/cakes");
@@ -23,7 +23,7 @@ export const getOneCake = async (id: string): Promise<Cake> => {
   }
 };
 
-export const createCake = async (cakeData) => {
+export const createCake = async (cakeData:Cake) => {
   try {
     const response = await api.post("/cakes", cakeData);
     console.log(response.data);

@@ -27,3 +27,14 @@ export const increaseItemQuantity = async (cakeId: string) => {
     }
   }
 };
+
+export const decreaseitemQuantity = async (cakeId: string) => {
+  try {
+    const response = await api.patch("/cart/decrease", { cakeId });
+    console.log(response.data);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || "Fail to decrease");
+    }
+  }
+};

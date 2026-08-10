@@ -1,8 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { cakeApi } from "@/services/cakeApi";
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {},
+    reducer: {
+      [cakeApi.reducerPath]: cakeApi.reducer,
+    },
+
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(cakeApi.middleware),
   });
 };
 

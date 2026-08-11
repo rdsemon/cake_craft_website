@@ -20,3 +20,13 @@ export interface CakesResponse {
   page: number;
   limit: number;
 }
+
+export interface CakeCardProp {
+  id: string;
+  title: string;
+  description: string;
+  coverImage: string | null;
+  price: number;
+  onAddToCart?: (cake: {}) => void;
+  isClickable?: boolean;
+}

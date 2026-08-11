@@ -1,22 +1,21 @@
-import { auth } from '@/lib/auth'
-import { AuthForm } from '@/components/auth-form'
-import { Navigation } from '@/components/navigation'
-import { Footer } from '@/components/footer'
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
-import { headers } from 'next/headers'
-import { Metadata } from 'next'
+import { auth } from "@/lib/auth";
+import { AuthForm } from "@/components/auth-form";
+import { Navigation } from "@/components/navigation";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Sign Up - Artisan Pâtisserie',
-  description: 'Create a new Artisan Pâtisserie account',
-}
+  title: "Sign Up - Artisan Pâtisserie",
+  description: "Create a new Artisan Pâtisserie account",
+};
 
 export default async function SignUpPage() {
-  const session = await auth.api.getSession({ headers: await headers() })
-  
+  const session = await auth.api.getSession({ headers: await headers() });
+
   if (session?.user) {
-    redirect('/')
+    redirect("/");
   }
 
   return (
@@ -87,15 +86,13 @@ export default async function SignUpPage() {
 
           {/* Guest Checkout Info */}
           <p className="text-center text-xs sm:text-sm text-muted-foreground">
-            Prefer to browse first? Continue{' '}
+            Prefer to browse first? Continue{" "}
             <Link href="/" className="text-primary hover:underline font-medium">
               shopping
             </Link>
           </p>
         </div>
       </main>
-
-      <Footer />
     </div>
-  )
+  );
 }

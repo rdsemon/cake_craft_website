@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { Cake } from "@/app/types/cake.types";
+import type { CakesResponse } from "@/types/cake.types";
 
 export const cakeApi = createApi({
   reducerPath: "cakeApi",
@@ -11,7 +11,7 @@ export const cakeApi = createApi({
   tagTypes: ["Cake"],
 
   endpoints: (builder) => ({
-    getCakes: builder.query<Cake[], void>({
+    getCakes: builder.query<CakesResponse, void>({
       query: () => "/cakes",
       providesTags: ["Cake"],
     }),

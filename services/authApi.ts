@@ -1,4 +1,4 @@
-import { createApi, CreateApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -14,10 +14,22 @@ export const authApi = createApi({
       query: (newUser) => ({
         url: "/auth/signUp",
         method: "POST",
-        body: "newCAke",
+        body: newUser,
+      }),
+
+      invalidatesTags: ["Auth"],
+    }),
+
+    login: builder.mutation({
+      query: (userInfo) => ({
+        url: "/auth/login",
+        method: "POST",
+        body: userInfo,
       }),
 
       invalidatesTags: ["Auth"],
     }),
   }),
 });
+
+export const { useLoginMutation, useSignUpMutation } = authApi;

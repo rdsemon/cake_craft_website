@@ -4,19 +4,8 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { Field, FieldLabel } from "@/components/ui/field";
-import { ReactNode } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
 import { FieldError } from "@/components/ui/field";
-
-interface AuthInputProps {
-  icon: ReactNode;
-  label: string;
-  id: string;
-  type: React.HTMLInputTypeAttribute;
-  placeholder: string;
-  registration: UseFormRegisterReturn;
-  error?: string;
-}
+import type { AuthInputProps } from "@/types/auth.types";
 
 export default function AuthInput({
   icon,

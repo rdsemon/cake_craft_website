@@ -5,6 +5,7 @@ export const authApi = createApi({
 
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
+    credentials: "include",
   }),
 
   tagTypes: ["Auth"],
@@ -29,7 +30,11 @@ export const authApi = createApi({
 
       invalidatesTags: ["Auth"],
     }),
+
+    getMe: builder.query({
+      query: () => "auth/me",
+    }),
   }),
 });
 
-export const { useLoginMutation, useSignUpMutation } = authApi;
+export const { useLoginMutation, useSignUpMutation, useGetMeQuery } = authApi;

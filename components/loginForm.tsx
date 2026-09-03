@@ -7,28 +7,28 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { LoginInputs } from "@/types/formInput.types";
 import FormButton from "./formButton";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function LoginFrom() {
   const {
     register,
-    watch,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<LoginInputs>();
 
   const [login, { isLoading }] = useLoginMutation();
+  const router = useRouter();
 
   const onSubmitForm = async (data: LoginInputs) => {
-    console.log(data);
     try {
       await login(data).unwrap();
       toast.success("Login successful");
       reset();
-      redirect("/");
+      router.push("/");
     } catch (error: any) {
-      toast.error(error.data.message || "someting went wrong");
+      console.log(error);
+      toast.error(error?.data?.message || "someting went wrong");
     }
   };
   return (

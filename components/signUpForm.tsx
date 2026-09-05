@@ -4,13 +4,10 @@ import AuthInput from "./authInput";
 import { FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { useForm, type SubmitHandler } from "react-hook-form";
-
-interface Inputs {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { useSignUpMutation } from "@/services/authApi";
+import toast from "react-hot-toast";
+import type { SignUpFormInputs } from "@/types/formInput.types";
+import FormButton from "./formButton";
 
 export default function SingUPForm() {
   const {
@@ -19,12 +16,18 @@ export default function SingUPForm() {
     watch,
     reset,
     formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("i got the click");
-    console.log(data);
-    console.log(errors);
-    reset();
+  } = useForm<SignUpFormInputs>();
+
+  const password = watch("password");
+  const [signUp, { isLoading }] = useSignUpMutation();
+  const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
+    try {
+      await signUp(data).unwrap();
+      toast.success("Login successful");
+      reset();
+    } catch (error: any) {
+      toast.error(error?.data?.message || "something went wrong");
+    }
   };
   return (
     <div>
@@ -36,7 +39,10 @@ export default function SingUPForm() {
             id="name"
             type="text"
             placeholder="john Doe"
-            registration={register("name", { required: true })}
+            registration={register("name", {
+              required: "This field is required",
+            })}
+            error={errors.name?.message}
           />
           <AuthInput
             icon={<Mail size={18} />}
@@ -44,7 +50,8 @@ export default function SingUPForm() {
             id="email"
             type="email"
             placeholder="your@gmail.com"
-            registration={register("email", { required: true })}
+            registration={register("email", { required: "Email is required" })}
+            error={errors.email?.message}
           />
           <AuthInput
             icon={<Lock size={18} />}
@@ -52,7 +59,10 @@ export default function SingUPForm() {
             id="password"
             type="password"
             placeholder="*******"
-            registration={register("password", { required: true })}
+            registration={register("password", {
+              required: "Passwrod is required",
+            })}
+            error={errors?.password?.message}
           />
           <AuthInput
             icon={<Lock size={18} />}
@@ -60,15 +70,15 @@ export default function SingUPForm() {
             id="password"
             type="password"
             placeholder="*******"
-            registration={register("confirmPassword", { required: true })}
+            registration={register("confirmPassword", {
+              required: true,
+              validate: (value) =>
+                value === password || "Password dose not match",
+            })}
+            error={errors?.confirmPassword?.message}
           />
         </FieldGroup>
-        <Button
-          type="submit"
-          className="block mt-6 text-md w-full bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors uppercase"
-        >
-          Sign Up
-        </Button>
+        <FormButton isLoading={isLoading}>Sign Up</FormButton>
       </form>
     </div>
   );

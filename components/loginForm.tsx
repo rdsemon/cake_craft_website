@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { LoginInputs } from "@/types/formInput.types";
 import FormButton from "./formButton";
 import { useRouter } from "next/navigation";
+import PasswordField from "./passwordField";
 
 export default function LoginFrom() {
   const {
@@ -18,6 +19,7 @@ export default function LoginFrom() {
   } = useForm<LoginInputs>();
 
   const [login, { isLoading }] = useLoginMutation();
+
   const router = useRouter();
 
   const onSubmitForm = async (data: LoginInputs) => {
@@ -56,6 +58,7 @@ export default function LoginFrom() {
           }}
           error={errors.password?.message}
         />
+        <PasswordField />
       </FieldGroup>
       <FormButton isLoading={isLoading}>Login</FormButton>
     </form>

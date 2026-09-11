@@ -47,18 +47,15 @@ export default function LoginFrom() {
           }}
           error={errors.email?.message}
         />
-        <AuthInput
-          icon={<Lock size={18} />}
+
+        <PasswordField
           label="Password"
           id="password"
-          type="password"
-          placeholder="*******"
           registration={{
             ...register("password", { required: "Password is required" }),
           }}
           error={errors.password?.message}
         />
-        <PasswordField />
       </FieldGroup>
       <FormButton isLoading={isLoading}>Login</FormButton>
     </form>

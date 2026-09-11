@@ -8,6 +8,7 @@ import { useSignUpMutation } from "@/services/authApi";
 import toast from "react-hot-toast";
 import type { SignUpFormInputs } from "@/types/formInput.types";
 import FormButton from "./formButton";
+import PasswordField from "./passwordField";
 
 export default function SingUPForm() {
   const {
@@ -53,23 +54,19 @@ export default function SingUPForm() {
             registration={register("email", { required: "Email is required" })}
             error={errors.email?.message}
           />
-          <AuthInput
-            icon={<Lock size={18} />}
+
+          <PasswordField
             label="Password"
             id="password"
-            type="password"
-            placeholder="*******"
             registration={register("password", {
               required: "Passwrod is required",
             })}
             error={errors?.password?.message}
           />
-          <AuthInput
-            icon={<Lock size={18} />}
+
+          <PasswordField
             label="Confirm Password"
             id="password"
-            type="password"
-            placeholder="*******"
             registration={register("confirmPassword", {
               required: true,
               validate: (value) =>

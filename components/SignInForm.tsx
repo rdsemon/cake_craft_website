@@ -1,14 +1,14 @@
 "use client";
-import AuthInput from "./authInput";
-import { Mail, Lock } from "lucide-react";
-import { FieldGroup } from "./ui/field";
 import { useLoginMutation } from "@/services/authApi";
+import { LoginInputs } from "@/types/formInput.types";
+import { Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { LoginInputs } from "@/types/formInput.types";
+import AuthInput from "./AuthInput";
 import FormButton from "./formButton";
-import { useRouter } from "next/navigation";
-import PasswordField from "./passwordField";
+import PasswordField from "./PasswordField";
+import { FieldGroup } from "./ui/field";
 
 export default function LoginFrom() {
   const {

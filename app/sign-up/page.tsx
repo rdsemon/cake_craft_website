@@ -1,10 +1,10 @@
-import { auth } from "@/lib/auth";
-import { AuthForm } from "@/components/auth-form";
 import { Navigation } from "@/components/navigation";
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 import { Metadata } from "next";
+import { headers } from "next/headers";
+import Link from "next/link";
+import SingUpForm from "@/components/SignUpForm";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Sign Up - Artisan Pâtisserie",
@@ -26,7 +26,7 @@ export default async function SignUpPage() {
         <div className="w-full max-w-md space-y-8">
           {/* Header */}
           <div className="text-center space-y-2">
-            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-foreground">
+            <h1 className="text-3xl mt-10 sm:text-4xl font-serif font-bold text-foreground">
               Join Us
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground">
@@ -36,8 +36,7 @@ export default async function SignUpPage() {
 
           {/* Form Card */}
           <div className="bg-card border border-border rounded-lg p-6 sm:p-8 space-y-6">
-            <AuthForm mode="sign-up" />
-
+            <SingUpForm />
             {/* Divider */}
             <div className="relative">
               <div className="absolute inset-0 flex items-center">

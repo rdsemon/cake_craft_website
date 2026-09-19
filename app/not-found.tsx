@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
   title: "404 - Page Not Found | Artisan Pâtisserie",

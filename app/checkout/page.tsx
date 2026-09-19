@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Navigation } from '@/components/navigation';
-import { Footer } from '@/components/footer';
-import { CartSummary } from '@/components/cart-summary';
-import { Button } from '@/components/ui/button';
-import { useCart } from '@/lib/cart-context';
-import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
+import { Footer } from "@/components/Footer";
+import { CartSummary } from "@/components/cart-summary";
+import { Navigation } from "@/components/navigation";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/lib/cart-context";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface FormData {
   firstName: string;
@@ -28,16 +28,16 @@ export default function CheckoutPage() {
   const { items, cartTotal, clearCart } = useCart();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    address: '',
-    city: '',
-    state: '',
-    zipCode: '',
-    pickupDate: '',
-    specialRequests: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    pickupDate: "",
+    specialRequests: "",
   });
 
   if (items.length === 0) {
@@ -46,8 +46,12 @@ export default function CheckoutPage() {
         <Navigation />
         <main className="flex-1 pt-24 pb-16 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-serif font-bold mb-2">Your cart is empty</h1>
-            <p className="text-muted-foreground mb-6">Add items to your cart before checking out</p>
+            <h1 className="text-2xl font-serif font-bold mb-2">
+              Your cart is empty
+            </h1>
+            <p className="text-muted-foreground mb-6">
+              Add items to your cart before checking out
+            </p>
             <Link href="/#collections">
               <Button>Browse Cakes</Button>
             </Link>
@@ -59,7 +63,7 @@ export default function CheckoutPage() {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -88,16 +92,18 @@ export default function CheckoutPage() {
         date: new Date().toISOString(),
       };
 
-      const savedOrders = JSON.parse(localStorage.getItem('cake-shop-orders') || '[]');
+      const savedOrders = JSON.parse(
+        localStorage.getItem("cake-shop-orders") || "[]",
+      );
       savedOrders.push(order);
-      localStorage.setItem('cake-shop-orders', JSON.stringify(savedOrders));
+      localStorage.setItem("cake-shop-orders", JSON.stringify(savedOrders));
 
       // Clear cart and redirect
       clearCart();
       router.push(`/order-success?orderId=${orderRef}`);
     } catch (error) {
-      console.error('[v0] Order submission error:', error);
-      alert('There was an error processing your order. Please try again.');
+      console.error("[v0] Order submission error:", error);
+      alert("There was an error processing your order. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -111,7 +117,10 @@ export default function CheckoutPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8 sm:mb-12">
-            <Link href="/cart" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-4">
+            <Link
+              href="/cart"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-4"
+            >
               <ArrowLeft className="w-4 h-4" />
               <span className="text-sm font-medium">Back to Cart</span>
             </Link>
@@ -304,7 +313,7 @@ export default function CheckoutPage() {
                   disabled={isLoading}
                   className="flex-1"
                 >
-                  {isLoading ? 'Processing...' : 'Place Order'}
+                  {isLoading ? "Processing..." : "Place Order"}
                 </Button>
               </div>
             </form>

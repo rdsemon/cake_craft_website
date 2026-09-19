@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { Navigation } from '@/components/navigation';
-import { Footer } from '@/components/footer';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { CheckCircle, Copy } from 'lucide-react';
+import { Footer } from "@/components/Footer";
+import { Navigation } from "@/components/navigation";
+import { Button } from "@/components/ui/button";
+import { CheckCircle, Copy } from "lucide-react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface OrderData {
   id: string;
@@ -34,13 +34,15 @@ interface OrderData {
 
 export default function OrderSuccessPage() {
   const searchParams = useSearchParams();
-  const orderId = searchParams.get('orderId');
+  const orderId = searchParams.get("orderId");
   const [order, setOrder] = useState<OrderData | null>(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (orderId) {
-      const savedOrders = JSON.parse(localStorage.getItem('cake-shop-orders') || '[]');
+      const savedOrders = JSON.parse(
+        localStorage.getItem("cake-shop-orders") || "[]",
+      );
       const foundOrder = savedOrders.find((o: OrderData) => o.id === orderId);
       if (foundOrder) {
         setOrder(foundOrder);
@@ -71,10 +73,10 @@ export default function OrderSuccessPage() {
     );
   }
 
-  const orderDate = new Date(order.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const orderDate = new Date(order.date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
   return (
@@ -92,7 +94,8 @@ export default function OrderSuccessPage() {
               Order Confirmed!
             </h1>
             <p className="text-muted-foreground text-base sm:text-lg">
-              Thank you for your order. We&apos;ll start preparing your delicious cakes!
+              Thank you for your order. We&apos;ll start preparing your
+              delicious cakes!
             </p>
           </div>
 
@@ -119,7 +122,7 @@ export default function OrderSuccessPage() {
                   className="w-full sm:w-auto"
                 >
                   <Copy className="w-4 h-4 mr-2" />
-                  {copied ? 'Copied!' : 'Copy ID'}
+                  {copied ? "Copied!" : "Copy ID"}
                 </Button>
               </div>
             </div>
@@ -131,10 +134,15 @@ export default function OrderSuccessPage() {
               </h2>
               <div className="space-y-3">
                 {order.items.map((item) => (
-                  <div key={item.id} className="flex justify-between items-center pb-3 border-b border-border last:border-b-0 last:pb-0">
+                  <div
+                    key={item.id}
+                    className="flex justify-between items-center pb-3 border-b border-border last:border-b-0 last:pb-0"
+                  >
                     <div>
                       <p className="font-medium text-foreground">{item.name}</p>
-                      <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
+                      <p className="text-sm text-muted-foreground">
+                        Qty: {item.quantity}
+                      </p>
                     </div>
                     <p className="font-semibold text-foreground">
                       ${(item.price * item.quantity).toFixed(2)}
@@ -144,7 +152,9 @@ export default function OrderSuccessPage() {
               </div>
               <div className="border-t border-border mt-4 pt-4 flex justify-between items-center">
                 <p className="font-semibold text-foreground">Total</p>
-                <p className="text-xl font-bold text-primary">${order.total.toFixed(2)}</p>
+                <p className="text-xl font-bold text-primary">
+                  ${order.total.toFixed(2)}
+                </p>
               </div>
             </div>
 
@@ -156,12 +166,15 @@ export default function OrderSuccessPage() {
                   Pickup/Delivery Date
                 </h3>
                 <p className="text-lg font-semibold text-foreground">
-                  {new Date(order.customer.pickupDate).toLocaleDateString('en-US', {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
+                  {new Date(order.customer.pickupDate).toLocaleDateString(
+                    "en-US",
+                    {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    },
+                  )}
                 </p>
               </div>
 
@@ -174,8 +187,12 @@ export default function OrderSuccessPage() {
                   <p className="text-foreground">
                     {order.customer.firstName} {order.customer.lastName}
                   </p>
-                  <p className="text-muted-foreground">{order.customer.email}</p>
-                  <p className="text-muted-foreground">{order.customer.phone}</p>
+                  <p className="text-muted-foreground">
+                    {order.customer.email}
+                  </p>
+                  <p className="text-muted-foreground">
+                    {order.customer.phone}
+                  </p>
                 </div>
               </div>
 
@@ -187,7 +204,8 @@ export default function OrderSuccessPage() {
                 <div className="space-y-1 text-sm">
                   <p className="text-foreground">{order.customer.address}</p>
                   <p className="text-foreground">
-                    {order.customer.city}, {order.customer.state} {order.customer.zipCode}
+                    {order.customer.city}, {order.customer.state}{" "}
+                    {order.customer.zipCode}
                   </p>
                 </div>
               </div>
@@ -211,7 +229,9 @@ export default function OrderSuccessPage() {
               <ul className="space-y-2 text-sm text-foreground">
                 <li>✓ We&apos;ll confirm your order via email shortly</li>
                 <li>✓ Our team will prepare your delicious cakes with care</li>
-                <li>✓ A reminder will be sent before your pickup/delivery date</li>
+                <li>
+                  ✓ A reminder will be sent before your pickup/delivery date
+                </li>
                 <li>✓ Feel free to contact us if you have any questions!</li>
               </ul>
             </div>

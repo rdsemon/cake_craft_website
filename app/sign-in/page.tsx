@@ -1,10 +1,10 @@
-import { auth } from "@/lib/auth";
-import { AuthForm } from "@/components/auth-form";
+import LoginFrom from "@/components/SignInForm";
 import { Navigation } from "@/components/navigation";
+import { auth } from "@/lib/auth";
+import { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { headers } from "next/headers";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Sign In - Artisan Pâtisserie",
@@ -36,7 +36,8 @@ export default async function SignInPage() {
 
           {/* Form Card */}
           <div className="bg-card border border-border rounded-lg p-6 sm:p-8 space-y-6">
-            <AuthForm mode="sign-in" />
+            {/* <AuthForm mode="sign-in" /> */}
+            <LoginFrom />
 
             {/* Divider */}
             <div className="relative">

@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { Navigation } from '@/components/navigation';
-import { Footer } from '@/components/footer';
-import { CartItem } from '@/components/cart-item';
-import { CartSummary } from '@/components/cart-summary';
-import { Button } from '@/components/ui/button';
-import { useCart } from '@/lib/cart-context';
-import Link from 'next/link';
-import { ShoppingCart } from 'lucide-react';
+import { Footer } from "@/components/Footer";
+import { CartItem } from "@/components/cart-item";
+import { CartSummary } from "@/components/cart-summary";
+import { Navigation } from "@/components/navigation";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/lib/cart-context";
+import { ShoppingCart } from "lucide-react";
+import Link from "next/link";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, cartTotal } = useCart();
@@ -25,7 +25,8 @@ export default function CartPage() {
               Shopping Cart
             </h1>
             <p className="text-muted-foreground">
-              {items.length} {items.length === 1 ? 'item' : 'items'} in your cart
+              {items.length} {items.length === 1 ? "item" : "items"} in your
+              cart
             </p>
           </div>
 
@@ -39,12 +40,11 @@ export default function CartPage() {
                 Your cart is empty
               </h2>
               <p className="text-muted-foreground mb-8 max-w-md">
-                Looks like you haven&apos;t added any delicious cakes yet. Browse our collection and find your favorite!
+                Looks like you haven&apos;t added any delicious cakes yet.
+                Browse our collection and find your favorite!
               </p>
               <Link href="/#collections">
-                <Button size="lg">
-                  Continue Shopping
-                </Button>
+                <Button size="lg">Continue Shopping</Button>
               </Link>
             </div>
           ) : (

@@ -1,16 +1,15 @@
 "use client";
-import { Lock, User, Mail } from "lucide-react";
-import AuthInput from "./authInput";
 import { FieldGroup } from "@/components/ui/field";
-import { Button } from "@/components/ui/button";
-import { useForm, type SubmitHandler } from "react-hook-form";
 import { useSignUpMutation } from "@/services/authApi";
-import toast from "react-hot-toast";
 import type { SignUpFormInputs } from "@/types/formInput.types";
+import { Mail, User } from "lucide-react";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import toast from "react-hot-toast";
+import AuthInput from "./AuthInput";
 import FormButton from "./formButton";
-import PasswordField from "./passwordField";
+import PasswordField from "./PasswordField";
 
-export default function SingUPForm() {
+export default function SingUpForm() {
   const {
     register,
     handleSubmit,

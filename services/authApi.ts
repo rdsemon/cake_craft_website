@@ -1,22 +1,5 @@
+import type { LogoutResponse, UserResponse } from "@/types/auth.types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  image: string;
-  role: string;
-}
-
-interface UserResponse {
-  status: string;
-  data: User;
-}
-
-interface LogoutResponse {
-  status: string;
-  message: string;
-}
 
 export const authApi = createApi({
   reducerPath: "authApi",

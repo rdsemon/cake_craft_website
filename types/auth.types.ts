@@ -20,3 +20,21 @@ export interface AuthInputProps {
   registration: UseFormRegisterReturn;
   error?: string;
 }
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  image: string;
+  role: string;
+}
+
+export interface UserResponse {
+  status: string;
+  data: User;
+}
+
+export interface LogoutResponse {
+  status: string;
+  message: string;
+}
